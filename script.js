@@ -10,6 +10,19 @@ function getComputerChoice() {
   }
 }
 
+function playRound (playerSelection, computerSelection) {
+  if(playerSelection === computerSelection) {
+    return "It's a draw !";
+  }
+  
+  if(checkIfPlayerIsWinning()) {
+    return `You Won! ${playerSelection} beats ${computerSelection}`;
+  }
+  
+  else return `You Lose! ${computerSelection} beats ${playerSelection}`;
+}
+
+
 function getRandomBetween(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
