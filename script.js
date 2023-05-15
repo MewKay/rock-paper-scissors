@@ -1,3 +1,8 @@
+let playerScore=0;
+let computerScore=0;
+
+game();
+
 function getComputerChoice() {
   let optionNumber = getRandomBetween(1,3);
   switch (optionNumber) {
@@ -31,6 +36,21 @@ function checkIfPlayerIsWinning(playerSelection, computerSelection) {
       (playerSelection === "SCISSORS" && computerSelection === "Paper"))
       return true;
   else return false;
+}
+
+function game() {
+  for(let i=0; i<5; i++) {
+    let playerChoice = prompt("What's your move ?");
+    let computerChoice = getComputerChoice();
+    
+    console.log(playRound(playerChoice, computerChoice));
+
+    if(checkIfPlayerIsWinning(playerChoice,computerChoice)) playerScore++;
+    else if(!checkIfPlayerIsWinning(playerChoice,computerChoice)) computerScore++;
+    else;
+    
+    console.log(`Score : ${playerScore} - ${computerScore}`)
+  }
 }
 
 function getRandomBetween(min, max) {
