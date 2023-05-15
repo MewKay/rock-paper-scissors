@@ -11,11 +11,14 @@ function getComputerChoice() {
 }
 
 function playRound (playerSelection, computerSelection) {
-  if(playerSelection === computerSelection) {
+  let upperCasePlayerSelection = playerSelection.toUpperCase();
+  let upperCaseComputerSelection = computerSelection.toUpperCase();
+
+  if(upperCasePlayerSelection === upperCaseComputerSelection) {
     return "It's a draw !";
   }
   
-  if(checkIfPlayerIsWinning(playerSelection, computerSelection)) {
+  if(checkIfPlayerIsWinning(upperCasePlayerSelection, computerSelection)) {
     return `You Won! ${playerSelection} beats ${computerSelection}`;
   }
   
@@ -23,9 +26,9 @@ function playRound (playerSelection, computerSelection) {
 }
 
 function checkIfPlayerIsWinning(playerSelection, computerSelection) {
-  if( (playerSelection === "Rock" && computerSelection === "Scissors") ||
-      (playerSelection === "Paper" && computerSelection === "Rock") ||
-      (playerSelection === "Scissors" && computerSelection === "Paper"))
+  if( (playerSelection === "ROCK" && computerSelection === "Scissors") ||
+      (playerSelection === "PAPER" && computerSelection === "Rock") ||
+      (playerSelection === "SCISSORS" && computerSelection === "Paper"))
       return true;
   else return false;
 }
