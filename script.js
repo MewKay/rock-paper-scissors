@@ -1,8 +1,6 @@
 let playerScore=0;
 let computerScore=0;
 
-game();
-
 function getComputerChoice() {
   let optionNumber = getRandomBetween(1,3);
   switch (optionNumber) {
@@ -48,6 +46,14 @@ function game() {
   
     console.log(`Score : ${playerScore} - ${computerScore}`)
   }
+
+  declareGameResult();
+}
+
+function declareGameResult() {
+  if(playerScore>computerScore) console.log("Congrats! You Won the game!!");
+  else if (computerScore>playerScore) console.log("Too bad, better luck next time...");
+  else console.log("No winner this time.");
 }
 
 function getRandomBetween(min, max) {
