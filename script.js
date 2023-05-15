@@ -16,39 +16,36 @@ function getComputerChoice() {
 }
 
 function playRound (playerSelection, computerSelection) {
-  let upperCasePlayerSelection = playerSelection.toUpperCase();
-  let upperCaseComputerSelection = computerSelection.toUpperCase();
 
-  if(upperCasePlayerSelection === upperCaseComputerSelection) {
+  if(playerSelection === computerSelection) {
     return "It's a draw !";
   }
   
-  if(checkIfPlayerIsWinning(upperCasePlayerSelection, computerSelection)) {
+  else if(checkIfFirstPlayerIsWinning(playerSelection, computerSelection)) {
     return `You Won! ${playerSelection} beats ${computerSelection}`;
   }
   
   else return `You Lose! ${computerSelection} beats ${playerSelection}`;
 }
 
-function checkIfPlayerIsWinning(playerSelection, computerSelection) {
-  if( (playerSelection === "ROCK" && computerSelection === "Scissors") ||
-      (playerSelection === "PAPER" && computerSelection === "Rock") ||
-      (playerSelection === "SCISSORS" && computerSelection === "Paper"))
-      return true;
+function checkIfFirstPlayerIsWinning(FirstPlayer, SecondPlayer) {
+  if( (FirstPlayer === "ROCK" && SecondPlayer === "SCISSORS") ||
+      (FirstPlayer === "PAPER" && SecondPlayer === "ROCK") ||
+      (FirstPlayer === "SCISSORS" && SecondPlayer === "PAPER"))
+  return true;
   else return false;
 }
 
 function game() {
   for(let i=0; i<5; i++) {
-    let playerChoice = prompt("What's your move ?");
-    let computerChoice = getComputerChoice();
+    let playerChoice = prompt("What's your move ?").toUpperCase();
+    let computerChoice = getComputerChoice().toUpperCase();
     
     console.log(playRound(playerChoice, computerChoice));
 
-    if(checkIfPlayerIsWinning(playerChoice,computerChoice)) playerScore++;
-    else if(!checkIfPlayerIsWinning(playerChoice,computerChoice)) computerScore++;
-    else;
-    
+    if(checkIfFirstPlayerIsWinning(playerChoice,computerChoice)) playerScore++;
+    else if(checkIfFirstPlayerIsWinning(computerChoice,playerChoice)) computerScore++;
+  
     console.log(`Score : ${playerScore} - ${computerScore}`)
   }
 }
