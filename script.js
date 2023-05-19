@@ -38,7 +38,9 @@ function playRound (playerSelection, computerSelection) {
 
   scoreDisplay.textContent = `Score : ${playerScore} - ${computerScore}`;
 
-declareGameResult();
+  if( playerScore === 5 || computerScore === 5 ) {
+    declareGameResult();
+  }
 }
 
 function checkIfFirstPlayerIsWinning(FirstPlayer, SecondPlayer) {
@@ -50,9 +52,8 @@ function checkIfFirstPlayerIsWinning(FirstPlayer, SecondPlayer) {
 }
 
 function declareGameResult() {
-  if(playerScore>computerScore) console.log("Congrats! You Won the game!!");
-  else if (computerScore>playerScore) console.log("Too bad, better luck next time...");
-  else console.log("No winner this time.");
+  if(playerScore>computerScore) announcer.textContent = "Congrats! You Won the game!!";
+  else if (computerScore>playerScore) announcer.textContent = "Too bad, better luck next time...";
 }
 
 function getRandomBetween(min, max) {
