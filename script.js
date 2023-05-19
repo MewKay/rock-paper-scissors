@@ -16,36 +16,28 @@ function getComputerChoice() {
 function playRound (playerSelection, computerSelection) {
 
   if(playerSelection === computerSelection) {
-    return "It's a draw !";
+    console.log("It's a draw !");
   }
-  
+
   else if(checkIfFirstPlayerIsWinning(playerSelection, computerSelection)) {
-    return `You Won! ${playerSelection} beats ${computerSelection}`;
+    console.log(`You Won! ${playerSelection} beats ${computerSelection}`);
   }
   
-  else return `You Lose! ${computerSelection} beats ${playerSelection}`;
+  else if(checkIfFirstPlayerIsWinning(computerSelection, playerSelection)) {
+    console.log(`You Lose! ${computerSelection} beats ${playerSelection}`);
+  }
+  
+  console.log(`Score : ${playerScore} - ${computerScore}`)
+
+declareGameResult();
 }
 
 function checkIfFirstPlayerIsWinning(FirstPlayer, SecondPlayer) {
-  if( (FirstPlayer === "ROCK" && SecondPlayer === "SCISSORS") ||
-      (FirstPlayer === "PAPER" && SecondPlayer === "ROCK") ||
-      (FirstPlayer === "SCISSORS" && SecondPlayer === "PAPER"))
+  if( (FirstPlayer === "Rock" && SecondPlayer === "Scissors") ||
+      (FirstPlayer === "Paper" && SecondPlayer === "Rock") ||
+      (FirstPlayer === "Scissors" && SecondPlayer === "Paper"))
   return true;
   else return false;
-}
-
-function game() {
-    let playerChoice = prompt("What's your move ?").toUpperCase();
-    let computerChoice = getComputerChoice().toUpperCase();
-    
-    console.log(playRound(playerChoice, computerChoice));
-
-    if(checkIfFirstPlayerIsWinning(playerChoice,computerChoice)) playerScore++;
-    else if(checkIfFirstPlayerIsWinning(computerChoice,playerChoice)) computerScore++;
-  
-    console.log(`Score : ${playerScore} - ${computerScore}`)
-
-  declareGameResult();
 }
 
 function declareGameResult() {
