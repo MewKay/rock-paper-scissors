@@ -1,15 +1,20 @@
 let playerScore=0;
 let computerScore=0;
+let selections = document.querySelectorAll(".selection");
+
+selections.forEach(selection => selection.addEventListener("click", function (e) {
+  game(e.target.textContent,getComputerChoice());
+}));
 
 function getComputerChoice() {
   let optionNumber = getRandomBetween(1,3);
   switch (optionNumber) {
     case 1:
-      return "Rock";
+      return "ROCK";
     case 2: 
-      return "Paper";
+      return "PAPER";
     case 3:
-      return "Scissors"
+      return "SCISSORS"
   }
 }
 
@@ -34,9 +39,7 @@ function checkIfFirstPlayerIsWinning(FirstPlayer, SecondPlayer) {
   else return false;
 }
 
-function game() {
-    let playerChoice = prompt("What's your move ?").toUpperCase();
-    let computerChoice = getComputerChoice().toUpperCase();
+function game(playerChoice, computerChoice) {
     
     console.log(playRound(playerChoice, computerChoice));
 
@@ -44,8 +47,6 @@ function game() {
     else if(checkIfFirstPlayerIsWinning(computerChoice,playerChoice)) computerScore++;
   
     console.log(`Score : ${playerScore} - ${computerScore}`)
-
-  declareGameResult();
 }
 
 function declareGameResult() {
@@ -57,3 +58,4 @@ function declareGameResult() {
 function getRandomBetween(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
