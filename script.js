@@ -3,6 +3,8 @@ let computerScore=0;
 const selections = document.querySelectorAll(".selection");
 let announcer = document.querySelector(".announcer");
 let scoreDisplay = document.querySelector(".score-display");
+let playerMoveDisplay = document.querySelector(".player");
+let computerMoveDisplay = document.querySelector(".computer");
 
 selections.forEach(selection => selection.addEventListener("click", function (e) {
   playRound(e.target.textContent, getComputerChoice());
@@ -36,6 +38,9 @@ function playRound (playerSelection, computerSelection) {
     computerScore++;
   }
 
+  displayMoveIcon(playerSelection,playerMoveDisplay);
+  displayMoveIcon(computerSelection,computerMoveDisplay);
+  
   scoreDisplay.textContent = `Score : ${playerScore} - ${computerScore}`;
 
   if( playerScore === 5 || computerScore === 5 ) {
@@ -58,4 +63,18 @@ function declareGameResult() {
 
 function getRandomBetween(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function displayMoveIcon (moveToDisplay, iconContainer) {
+  switch(moveToDisplay) {
+    case "Rock":
+      iconContainer.textContent = "✊";
+      break;
+    case "Paper":
+      iconContainer.textContent = "✋";
+      break;
+    case "Scissors":
+      iconContainer.textContent = "✌";
+      break;
+  }
 }
