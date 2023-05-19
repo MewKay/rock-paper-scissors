@@ -13,6 +13,7 @@ selections.forEach(selection => selection.addEventListener("click", function (e)
 }));
 
 tryAgainButton.textContent = "Try Again ?";
+tryAgainButton.classList.toggle("selection");
 tryAgainButton.addEventListener("click", function (e) {
   resetGame();
 });
