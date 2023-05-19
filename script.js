@@ -8,24 +8,14 @@ let computerMoveDisplay = document.querySelector(".computer");
 let selectionContainer = document.querySelector(".selection-container");
 const tryAgainButton = document.createElement("button");
 
+selections.forEach(selection => selection.addEventListener("click", function (e) {
+  play(e.target.textContent, getComputerChoice());
+}));
+
 tryAgainButton.textContent = "Try Again ?";
 tryAgainButton.addEventListener("click", function (e) {
-  selectionContainer.innerHTML = "";
-  
-  selections.forEach(selection => selectionContainer.appendChild(selection));
-
-  playerScore = 0;
-  computerScore = 0;
-
-  scoreDisplay.textContent = "Score : 0 - 0";
-
-  playerMoveDisplay.textContent = "";
-  computerMoveDisplay.textContent = "";
+  resetGame();
 });
-
-selections.forEach(selection => selection.addEventListener("click", function (e) {
-  playRound(e.target.textContent, getComputerChoice());
-}));
 
 function getComputerChoice() {
   let optionNumber = getRandomBetween(1,3);
@@ -39,8 +29,13 @@ function getComputerChoice() {
   }
 }
 
-function playRound (playerSelection, computerSelection) {
+function play(playerSelection, computerSelection) {
+  playRound(playerSelection,computerSelection);
+  display(playerSelection,computerSelection);
+  endGame();
+}
 
+function playRound(playerSelection, computerSelection) {
   if(playerSelection === computerSelection) {
     announcer.textContent = "It's a draw !";
   }
@@ -54,21 +49,28 @@ function playRound (playerSelection, computerSelection) {
     announcer.textContent = `You Lose! ${computerSelection} beats ${playerSelection}`;
     computerScore++;
   }
+}
 
+function display(playerSelection, computerSelection) {
   displayMoveIcon(playerSelection,playerMoveDisplay);
   displayMoveIcon(computerSelection,computerMoveDisplay);
 
   scoreDisplay.textContent = `Score : ${playerScore} - ${computerScore}`;
-
-  if( playerScore === 5 || computerScore === 5 ) {
-    declareGameResult();
-  }
 }
 
-function checkIfFirstPlayerIsWinning(FirstPlayer, SecondPlayer) {
-  if( (FirstPlayer === "Rock" && SecondPlayer === "Scissors") ||
-      (FirstPlayer === "Paper" && SecondPlayer === "Rock") ||
-      (FirstPlayer === "Scissors" && SecondPlayer === "Paper"))
+function endGame() {
+  if( playerScore < 5 && computerScore < 5 ) {
+    return;
+  }
+  declareGameResult();
+  selectionContainer.innerHTML = "";
+  selectionContainer.appendChild(tryAgainButton);
+}
+
+function checkIfFirstPlayerIsWinning(firstPlayer, secondPlayer) {
+  if( (firstPlayer === "Rock" && secondPlayer === "Scissors") ||
+      (firstPlayer === "Paper" && secondPlayer === "Rock") ||
+      (firstPlayer === "Scissors" && secondPlayer === "Paper"))
   return true;
   else return false;
 }
@@ -76,9 +78,6 @@ function checkIfFirstPlayerIsWinning(FirstPlayer, SecondPlayer) {
 function declareGameResult() {
   if(playerScore>computerScore) announcer.textContent = "Congrats! You Won the game!!";
   else if (computerScore>playerScore) announcer.textContent = "Too bad, better luck next time...";
-
-  selectionContainer.innerHTML = "";
-  selectionContainer.appendChild(tryAgainButton);
 }
 
 function getRandomBetween(min, max) {
@@ -96,5 +95,21 @@ function displayMoveIcon (moveToDisplay, iconContainer) {
     case "Scissors":
       iconContainer.textContent = "✌";
       break;
+    default:
+      iconContainer.textContent = "";
   }
+}
+
+function resetGame() {
+  selectionContainer.innerHTML = "";
+  
+  selections.forEach(selection => selectionContainer.appendChild(selection));
+
+  playerScore = 0;
+  computerScore = 0;
+
+  display("",playerMoveDisplay);
+  display("",computerMoveDisplay);
+
+  announcer.textContent = "Choose your move";
 }
