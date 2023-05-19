@@ -35,7 +35,6 @@ function checkIfFirstPlayerIsWinning(FirstPlayer, SecondPlayer) {
 }
 
 function game() {
-  for(let i=0; i<5; i++) {
     let playerChoice = prompt("What's your move ?").toUpperCase();
     let computerChoice = getComputerChoice().toUpperCase();
     
@@ -45,7 +44,6 @@ function game() {
     else if(checkIfFirstPlayerIsWinning(computerChoice,playerChoice)) computerScore++;
   
     console.log(`Score : ${playerScore} - ${computerScore}`)
-  }
 
   declareGameResult();
 }
