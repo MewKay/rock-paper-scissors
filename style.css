@@ -3,6 +3,7 @@ body {
   font-family: 'Roboto', 'Arial', sans-serif;
   background-color: rgb(11, 47, 77);
   color: white;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,10 +11,20 @@ body {
 
 .round-display {
   background-color: rgb(20, 79, 128);
-  box-sizing: border-box;
   border-radius: 10px;
   margin : 20px 0;
   width: 400px ;
   height: 200px;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}
+
+.move-show {
+  background-color: rgb(3, 28, 49);
+  font-size: 80px;
+  height: 120px;
+  width: 100px;
+  border-radius: 6px; 
 }
