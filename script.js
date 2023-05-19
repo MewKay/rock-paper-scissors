@@ -1,5 +1,10 @@
 let playerScore=0;
 let computerScore=0;
+const selections = document.querySelectorAll(".selection");
+
+selections.forEach(selection => selection.addEventListener("click", function (e) {
+  playRound(e.target.textContent, getComputerChoice());
+}));
 
 function getComputerChoice() {
   let optionNumber = getRandomBetween(1,3);
@@ -26,7 +31,7 @@ function playRound (playerSelection, computerSelection) {
   else if(checkIfFirstPlayerIsWinning(computerSelection, playerSelection)) {
     console.log(`You Lose! ${computerSelection} beats ${playerSelection}`);
   }
-  
+
   console.log(`Score : ${playerScore} - ${computerScore}`)
 
 declareGameResult();
