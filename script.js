@@ -5,6 +5,23 @@ let announcer = document.querySelector(".announcer");
 let scoreDisplay = document.querySelector(".score-display");
 let playerMoveDisplay = document.querySelector(".player");
 let computerMoveDisplay = document.querySelector(".computer");
+let selectionContainer = document.querySelector(".selection-container");
+const tryAgainButton = document.createElement("button");
+
+tryAgainButton.textContent = "Try Again ?";
+tryAgainButton.addEventListener("click", function (e) {
+  selectionContainer.innerHTML = "";
+  
+  selections.forEach(selection => selectionContainer.appendChild(selection));
+
+  playerScore = 0;
+  computerScore = 0;
+
+  scoreDisplay.textContent = "Score : 0 - 0";
+
+  playerMoveDisplay.textContent = "";
+  computerMoveDisplay.textContent = "";
+});
 
 selections.forEach(selection => selection.addEventListener("click", function (e) {
   playRound(e.target.textContent, getComputerChoice());
@@ -40,7 +57,7 @@ function playRound (playerSelection, computerSelection) {
 
   displayMoveIcon(playerSelection,playerMoveDisplay);
   displayMoveIcon(computerSelection,computerMoveDisplay);
-  
+
   scoreDisplay.textContent = `Score : ${playerScore} - ${computerScore}`;
 
   if( playerScore === 5 || computerScore === 5 ) {
@@ -59,6 +76,9 @@ function checkIfFirstPlayerIsWinning(FirstPlayer, SecondPlayer) {
 function declareGameResult() {
   if(playerScore>computerScore) announcer.textContent = "Congrats! You Won the game!!";
   else if (computerScore>playerScore) announcer.textContent = "Too bad, better luck next time...";
+
+  selectionContainer.innerHTML = "";
+  selectionContainer.appendChild(tryAgainButton);
 }
 
 function getRandomBetween(min, max) {
