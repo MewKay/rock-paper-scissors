@@ -2,6 +2,7 @@ let playerScore=0;
 let computerScore=0;
 const selections = document.querySelectorAll(".selection");
 let announcer = document.querySelector(".announcer");
+let scoreDisplay = document.querySelector(".score-display");
 
 selections.forEach(selection => selection.addEventListener("click", function (e) {
   playRound(e.target.textContent, getComputerChoice());
@@ -35,7 +36,7 @@ function playRound (playerSelection, computerSelection) {
     computerScore++;
   }
 
-  console.log(`Score : ${playerScore} - ${computerScore}`)
+  scoreDisplay.textContent = `Score : ${playerScore} - ${computerScore}`;
 
 declareGameResult();
 }
