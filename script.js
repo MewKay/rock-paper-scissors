@@ -1,6 +1,7 @@
 let playerScore=0;
 let computerScore=0;
 const selections = document.querySelectorAll(".selection");
+let announcer = document.querySelector(".announcer");
 
 selections.forEach(selection => selection.addEventListener("click", function (e) {
   playRound(e.target.textContent, getComputerChoice());
@@ -21,16 +22,16 @@ function getComputerChoice() {
 function playRound (playerSelection, computerSelection) {
 
   if(playerSelection === computerSelection) {
-    console.log("It's a draw !");
+    announcer.textContent = "It's a draw !";
   }
 
   else if(checkIfFirstPlayerIsWinning(playerSelection, computerSelection)) {
-    console.log(`You Won! ${playerSelection} beats ${computerSelection}`);
+    announcer.textContent = `You Won! ${playerSelection} beats ${computerSelection}`;
     playerScore++;
   }
   
   else if(checkIfFirstPlayerIsWinning(computerSelection, playerSelection)) {
-    console.log(`You Lose! ${computerSelection} beats ${playerSelection}`);
+    announcer.textContent = `You Lose! ${computerSelection} beats ${playerSelection}`;
     computerScore++;
   }
 
