@@ -26,10 +26,12 @@ function playRound (playerSelection, computerSelection) {
 
   else if(checkIfFirstPlayerIsWinning(playerSelection, computerSelection)) {
     console.log(`You Won! ${playerSelection} beats ${computerSelection}`);
+    playerScore++;
   }
   
   else if(checkIfFirstPlayerIsWinning(computerSelection, playerSelection)) {
     console.log(`You Lose! ${computerSelection} beats ${playerSelection}`);
+    computerScore++;
   }
 
   console.log(`Score : ${playerScore} - ${computerScore}`)
